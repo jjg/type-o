@@ -10,6 +10,15 @@ It can also be used as a nice USB keyboard!
 
 This repository contains source code for Type-O's [firmware](./firmware), [model files](./models) for the printable parts as well as related [documentation](.docs).
 
-Details about the project can be found in the following posts on [jasongullickson.com](https://jasongullickson.com) and under the hashtag #typeo in the fediverse.
+Details and progress can be found in the [journal](./journal.md) or in more human-readable form in the following posts on [jasongullickson.com](https://jasongullickson.com): 
 
 * [Type-O](https://jasongullickson.com/type-o.html)
+
+You can also follow the hashtag #typeo in the fediverse for ad-hoc updates and discussion.
+
+
+# Reference
+
+* [Adafruit Feather RP2040](https://learn.adafruit.com/adafruit-feather-rp2040-pico)
+* [Adafruit I2C/SPI LCD Backpack](https://learn.adafruit.com/i2c-spi-lcd-backpack)
+* [5V 40x4 4004 LCM Monochrome Character LCD Display Module HD44780](https://www.ebay.com/itm/291024701200)
