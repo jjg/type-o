@@ -22,3 +22,9 @@ You can also follow the hashtag #typeo in the fediverse for ad-hoc updates and d
 * [Adafruit Feather RP2040](https://learn.adafruit.com/adafruit-feather-rp2040-pico)
 * [Adafruit I2C/SPI LCD Backpack](https://learn.adafruit.com/i2c-spi-lcd-backpack)
 * [5V 40x4 4004 LCM Monochrome Character LCD Display Module HD44780](https://www.ebay.com/itm/291024701200)
+* [Cooperative Multitasking in CircuitPython](https://learn.adafruit.com/cooperative-multitasking-in-circuitpython-with-asyncio/overview)
+* https://learn.adafruit.com/adafruit-gemma-m0/circuitpython-hid-keyboard-and-mouse
+* https://learn.adafruit.com/circuitpython-essentials/circuitpython-storage
+* https://learn.adafruit.com/diy-pico-mechanical-keyboard-with-fritzing-circuitpython/overview
+* https://github.com/modulaire/RPi-Pico-HID-Keyboard
+* https://docs.circuitpython.org/en/latest/docs/library/io.html

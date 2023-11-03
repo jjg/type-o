@@ -25,9 +25,9 @@ OK, let's try mapping this thing out:
 | VBUS        |              |            | power from USB? |
 | GPIO3       | I2C Backpack | SCL        | I2C clock pin     |
 | GPIO2       | I2C Backpack | SDA        | I2C data pin      |
-| ???         | I2C Backpack | VIN        | 5v supply from ???|
+| ???         | I2C Backpack | VIN        | 5v supply from ??? (might need to add boost converter) |
 | GND         | I2C Backpack | GND        | shared ground     |
-| GPIO13      | Keyboard     | COL1       | first keyboard column |
+| GPIO13      | Keyboard     | COL1       | first keyboard column (this is also the built-in LED, hopefully that won't cause problems or we'll have to move this) |
 | GPIO12      | Keyboard     | COL2       | second keyboard column | 
 | GPIO11      | Keyboard     | COL3       | third keyboard column |
 | GPIO10      | Keyboard     | COL4       | fourth keyboard column | 
