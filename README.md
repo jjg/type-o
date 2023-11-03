@@ -28,3 +28,4 @@ You can also follow the hashtag #typeo in the fediverse for ad-hoc updates and d
 * https://learn.adafruit.com/diy-pico-mechanical-keyboard-with-fritzing-circuitpython/overview
 * https://github.com/modulaire/RPi-Pico-HID-Keyboard
 * https://docs.circuitpython.org/en/latest/docs/library/io.html
+* https://learn.adafruit.com/customizing-usb-devices-in-circuitpython
