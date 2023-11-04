@@ -34,7 +34,6 @@ module 40x4_LCD(){
     // TODO: solder pads/pins
 }
 
-// TODO: Feather RP2040
 // TODO: lipo cell
 // TODO: boost converter
 // TODO: mode switch
@@ -67,19 +66,32 @@ module case_top(){
         }
     }
     
+    // TODO: keyboard retainer
     // TODO: LCD mounting posts
     // TODO: Feather mounting posts
 }
 // case bottom
 module case_bottom(){
     difference(){
+        color("red")
         cube([250,165,10]);
-        translate([(250/2)-(230/2)-5,(170/2)-(150/2)-5,5]){
-            cube([240,155,6]);
+        
+        // electronics opening
+        translate([(250/2)-(230/2)-5,85,5]){
+            cube([240,75,6]);
+        }
+        
+        // keyboard opening
+        translate([(250/2)-(235/2),8,8]){
+            cube([235,84,12]);
+        }
+        translate([(250/2)-(227/2),12,5]){
+            cube([227,84,12]);
         }
         
         // TODO: reset hole
     }
+        
 }
 
 // Assemble!

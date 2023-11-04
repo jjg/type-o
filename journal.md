@@ -1,5 +1,12 @@
 # Type-O Project Journal
 
+## 11042023
+
+Spent some time early this morning on the first draft of a case design.  It's very primative at this point but I think it's enough of a start to hold the key components in place and see how well the virtual parts match-up with the real ones.
+
+I'll try running a set later today and see how things fit.
+
+
 ## 11032023
 
 Not exactly the start of this project, but the start of anything meaningful in this repository at least.
