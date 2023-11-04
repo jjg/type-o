@@ -4,6 +4,8 @@
 
 Type-O is a simple portable writing device consisting of a *nice* keyboard and a 4x40 character LCD screen.  What you type shows-up on the screen and goes into a file.
 
+![exploded 3D render](./render_explode.png)
+
 When you connect Type-O to a computer via USB, it shows-up as a flash drive containing a file that contains your writing.
 
 It can also be used as a nice USB keyboard!
