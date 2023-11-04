@@ -15,6 +15,7 @@ This repository contains source code for Type-O's [firmware](./firmware), [model
 Details and progress can be found in the [journal](./journal.md) or in more human-readable form in the following posts on [jasongullickson.com](https://jasongullickson.com): 
 
 * [Type-O](https://jasongullickson.com/type-o.html)
+* [Type-O Prototype Hardware](https://jasongullickson.com/type-o-prototype-hardware.html)
 
 You can also follow the hashtag #typeo in the fediverse for ad-hoc updates and discussion.
 
