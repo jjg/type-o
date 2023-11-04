@@ -6,6 +6,9 @@ Spent some time early this morning on the first draft of a case design.  It's ve
 
 I'll try running a set later today and see how things fit.
 
+Started piecing-together the fimrware as well.  So far mostly just grabbing dependencies and references.
+
+
 
 ## 11032023
 

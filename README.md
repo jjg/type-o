@@ -32,3 +32,4 @@ You can also follow the hashtag #typeo in the fediverse for ad-hoc updates and d
 * https://github.com/modulaire/RPi-Pico-HID-Keyboard
 * https://docs.circuitpython.org/en/latest/docs/library/io.html
 * https://learn.adafruit.com/customizing-usb-devices-in-circuitpython
+* https://docs.circuitpython.org/projects/charlcd/en/latest/examples.html#i2c-mono
