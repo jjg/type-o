@@ -1,5 +1,36 @@
 # Type-O Project Journal
 
+## 11072023
+
+Ooohh where to start...
+
+I did a lot of datasheet reading last night and figured out some good things and some bad things.  The good is that it looks like I *don't* need the boost converter for the 5v LCD.  Turns out the i2c backback does this (I thought it only did level matching on the logic side).  This also means that I might be able to use the connector Adafruit calls "STEMMA QT" to connect the Feather to the backpack.
+
+The bad news is that I mapped the pins between the backpack and the LCD and I don't think it's going to work unmodified.  The LCD has two controller enable pins (I assume it needs to controllers for 40 character lines vs. the 20 character lines this backpack was designed for) and I assume that the second enable pin needs to be "enabled" at the right time in order to run the display correctly.  I have a few theories about how this works and how I might address it, but I'll need to read some code and more datasheets to know for sure.  For the moment I'm just going to hook everything up as if it had a single controller and see how far I get.
+
+### Pin mapping between i2c backpack and 4x40 LCD
+
+| Backpack | LCD | Description/notes |
+|:---------|-----|-------------------|
+| 1        | 13  | GND |
+| 2        | 14  | VCC |
+| 3        | 12  | VEE (Backlight brightness?) |
+| 4        | 11  | RS |
+| 5        | 10  | RW |
+| 6        | 9   | Enable 1 |
+| 7        | 8   | DB0 |
+| 8        | 7   | DB1 |
+| 9        | 6   | DB2 |
+| 10       | 5   | DB3 |
+| 11       | 4   | DB4 |
+| 12       | 3   | DB5 |
+| 13       | 2   | DB6 |
+| 14       | 1   | DB7 |
+| 15       | 17  | LED + (on the opposite end of the LCD board from the rest of the pins) |
+| 16       | 18  | LED - (on the opposite end of the LCD board from the rest of the pins) |
+
+
+
 ## 11042023
 
 Spent some time early this morning on the first draft of a case design.  It's very primative at this point but I think it's enough of a start to hold the key components in place and see how well the virtual parts match-up with the real ones.
@@ -22,10 +53,11 @@ Other than that the only other hardware is whatever Li-poly battery I have lying
 
 OK, let's try mapping this thing out:
 
+### Pin mapping between Feather and  periphereal devices
+
 | Feather Pin | Device       | Device Pin | Description/Notes |
 |:------------|--------------|------------|-------------------|
 | RESET       |              |            | external reset button |
-| 3v3         |              |            | open |
 | 3v3         |              |            | open |
 | GND         |              |            | common ground |
 | VBAT        | Lipo         | Positive   | battery connector |
@@ -33,9 +65,9 @@ OK, let's try mapping this thing out:
 | VBAT        |              |            | open (maybe 5vdc boost? |
 | EN          |              |            | enable pin, maybe connect to "sleep" switch? |
 | VBUS        |              |            | power from USB? |
-| GPIO3       | I2C Backpack | SCL        | I2C clock pin     |
-| GPIO2       | I2C Backpack | SDA        | I2C data pin      |
-| ???         | I2C Backpack | VIN        | 5v supply from ??? (might need to add boost converter) |
+| GPIO3       | I2C Backpack | CLK        | I2C clock pin (SCL)     |
+| GPIO2       | I2C Backpack | DAT        | I2C data pin (SDA)      |
+| 3v3         | I2C Backpack | VIN        | 3.3v supply |
 | GND         | I2C Backpack | GND        | shared ground     |
 | GPIO13      | Keyboard     | COL1       | first keyboard column (this is also the built-in LED, hopefully that won't cause problems or we'll have to move this) |
 | GPIO12      | Keyboard     | COL2       | second keyboard column | 
