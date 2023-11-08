@@ -1,5 +1,24 @@
 # Type-O Project Journal
 
+## 11082024
+
+Today we debug the display.
+
+First I want to make sure the "objects" used to initialize i2c match the pins I actually used for the display.  This appears to be the case, so moving-on.
+
+With `cols` set to `40` and `rows` set to `4`, the message `Hello\nType-O` results in solid boxes filling the first and third rows of the display.  I tried changing the message to see what happens on the display and it stays the same until I remove the `\n`, at which point the display is blank.
+
+I also tried tweaking the `rows`/`cols` settings to see what impact that has and it doesn't appear to have any.  I'll double-check the wiring and then dive into the library code a bit.
+
+Spent what feels like an hour double-checking the connections and I can't find any errors there.
+
+After digging around a bit I'm starting to wonder if there is something more fundamentally wrong with using the backpack this way.  Even basic stuff like turning the backlight off isn't working, so maybe I need to consider other options.
+
+While reading about the internals of the backpack I noticed that the heavy lifting is done by a MCP23008 which if I remember right is the same chip I used to make a custom board for the front panel of RAIN-PSC.  So if I can't get the backpack to work, maybe I can just make my own i2c adapter for the display using a MCP23008 and write a custom driver/library for it?
+
+I posted a question to the [Adafruit message board](https://forums.adafruit.com/viewtopic.php?t=205816) to see if anyone else has any ideas, but in the meantime I think I'll switch to working on the keyboard side of things.
+
+
 ## 11072023
 
 Ooohh where to start...
