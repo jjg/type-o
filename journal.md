@@ -1,6 +1,30 @@
 # Type-O Project Journal
 
-## 11082024
+## 11122023
+
+Since the display is giving me trouble I'm going to play with the keyboard for awhile.
+
+I think a reasonable first goal is to get to a point where pressing a single key results in printing the key's character to the serial console.  That should prove the basic electrical and software designs without a lot of extra wiring and such.
+
+So the theory behind the keyboard code is that there are 4 rows and 12 columns in a matrix.  I'll connect a line from each row and column to a GPIO, assert a signal to each row in turn and while that row is turned "on", read through each column GPIO to look for the signal.  If a signal is found on a column, we can say that the key at the row+col position is pressed.
+
+My initial thought on how to do this is to take each row GPIO and configure it for output, and configure each column GPIO for input, and assert a 1 or `true` to each row as I cycle through them.  But I'm not sure this actually makes sense wrt how the board works electrically so I need to do a little digging there.
+
+row 1 GPIO: 18
+col 1 GPIO: 12
+
+> tips: use `dir(microcontroller.pin)` (`import` `board`, `microcontroller` first) to get a list GPIO names available for the board.
+> `help(modules)` will show all the built-in  modules available for the current board.
+
+OK, this seems to work.  If I configure `GPIO18` for `OUTPUT` and `GPIO12` for `INPUT`, I'm able to set `GPIO18` to `True` and get the keypressed state as a `True`/`False` by reading the `value` of the pin object.
+
+Now let's try scanning more than one row.
+
+
+
+
+
+## 11082023
 
 Today we debug the display.
 
@@ -88,8 +112,8 @@ OK, let's try mapping this thing out:
 | GPIO2       | I2C Backpack | DAT        | I2C data pin (SDA)      |
 | 3v3         | I2C Backpack | VIN        | 3.3v supply |
 | GND         | I2C Backpack | GND        | shared ground     |
-| GPIO13      | Keyboard     | COL1       | first keyboard column (this is also the built-in LED, hopefully that won't cause problems or we'll have to move this) |
-| GPIO12      | Keyboard     | COL2       | second keyboard column | 
+| GPIO12      | Keyboard     | COL1       | first keyboard column  |
+| GPIO13      | Keyboard     | COL2       | second keyboard column (this is also the built-in LED, hopefully that won't cause problems or we'll have to move this)| 
 | GPIO11      | Keyboard     | COL3       | third keyboard column |
 | GPIO10      | Keyboard     | COL4       | fourth keyboard column | 
 | GPIO9       | Keyboard     | COL5       | fifth keyboard column |
