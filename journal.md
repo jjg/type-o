@@ -20,7 +20,17 @@ OK, this seems to work.  If I configure `GPIO18` for `OUTPUT` and `GPIO12` for `
 
 Now let's try scanning more than one row.
 
+This didn't work.  I'm not sure if it doesn't work because I did something wrong (miswiring, etc.) or if maybe the last experiment didn't work how I thought it did.  I'm going to dig a little deeper into how the pins are working to make sure it's doing what I expect at an electrical level.
 
+After doing a little reading I think I want to alter things a bit.  I think what I want to do is setup the rows as [open collectors]() and then read the columns in a way that it can tell if the column pin is grounded.  I think this means I want the input pulled-up (defaulting to `True`), so when the row is selected (open-collector closed) and a key is pressed the input gets pulled to ground and reads `False`.
+
+This seems to work!  Now let's try it with a second row...
+
+Second row works as well!  Now the question is, do we re-work this to use a more dynamic setup (instead of a line of code for each row and column) or test a second column first?
+
+Yeah let's test a second column first.  If that works we should know all we need to know to scan the entire keyboard.
+
+Second column works!  Now it's time to refactor this into a more reasonable means of looping over all these bits.
 
 
 
