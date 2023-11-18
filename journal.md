@@ -1,5 +1,10 @@
 # Type-O Project Journal
 
+## 11182023
+
+Tweaked the bottom case design to add clearance under the keyboard and elsewhere to accomodate the wiring between modules (the Dupont connectors add a lot of height).  This might be reducable in the future with more customized components.
+
+
 ## 11122023
 
 Since the display is giving me trouble I'm going to play with the keyboard for awhile.

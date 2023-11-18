@@ -74,19 +74,32 @@ module case_top(){
 module case_bottom(){
     difference(){
         color("red")
-        cube([250,165,10]);
+        //cube([250,165,10]);
+        cube([250,165,30]);
         
         // electronics opening
-        translate([(250/2)-(230/2)-5,85,5]){
-            cube([240,75,6]);
+        //translate([(250/2)-(230/2)-5,85,5]){
+        translate([(250/2)-(230/2)-5,95,5]){
+            //cube([240,75,6]);
+            cube([240,65,30]);
         }
         
         // keyboard opening
-        translate([(250/2)-(235/2),8,8]){
-            cube([235,84,12]);
+        //translate([(250/2)-(235/2),8,8]){
+        translate([(250/2)-(235/2),8,20]){
+            //#cube([235,84,12]);
+            cube([235,84,30]);
         }
+        // cut-out under keyboard
+        //translate([(250/2)-(227/2),12,5]){
         translate([(250/2)-(227/2),12,5]){
-            cube([227,84,12]);
+            //#cube([227,84,12]);
+            cube([227,80,30]);
+        }
+        
+        // keyboard wiring opening
+        translate([(250/2)-(200/2),90,5]){
+            cube([200,10,30]);
         }
         
         // TODO: reset hole
@@ -96,20 +109,20 @@ module case_bottom(){
 
 // Assemble!
 translate([-1,0,0]){
-    keyboard();
+    //keyboard();
 }
 
 translate([-190/2,50,1]){
-    40x4_LCD();
+    //40x4_LCD();
 }
 
 translate([-250/2,-50,30]){
-    case_top();
+    //case_top();
 }
 
 translate([119,110,3]){
     rotate([0,180,90]){
-        import("reference/4884 Feather RP2040.stl");
+        //import("reference/4884 Feather RP2040.stl");
     }
 }
 
