@@ -6,6 +6,8 @@ Going to try to wire-up the rest of the keyboard and see how much we an get work
 
 Wires are connected, now to do the software side of things...
 
+First row working!
+All rows working!
 
 ## 11182023
 
