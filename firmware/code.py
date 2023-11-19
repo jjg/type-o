@@ -65,7 +65,7 @@ keymap[3][1] = "C"
 keymap[3][2] = "U"
 keymap[3][3] = "A"
 keymap[3][4] = "L"
-keymap[3][5] = ""
+keymap[3][5] = ""   # NC, space takes two columns
 keymap[3][6] = "P"
 keymap[3][7] = "R"
 keymap[3][8] = "L"
@@ -114,16 +114,11 @@ for gpio in col_gpios:
     col.pull = Pull.UP
     kbd_cols.append(col)
 
-# keyboard input buffers
-kbd_char = ""
-kbd_last_char = ""
-
 # main event loop
 while True: 
 
-    # TODO: Read keypress from keyboard
-    #print("Entering keyboard scan")
-
+    # read keypress from keyboard
+    kbd_char = ""
     keymap_x = 0
     keymap_y = 0
     for kbd_row in kbd_rows:
@@ -137,26 +132,6 @@ while True:
         keymap_x = keymap_x + 1
 
     print(kbd_char)
-
-    #if kbd_char != kbd_last_char:
-    #    print(kbd_char)
-    #    kbd_last_char = kbd_char
-
-    #row_1.value = False # Connect drain to ground to scan the row
-    #print(col_1.value)  # False if pressed (pulled to ground)
-    #if col_1.value == False:
-    #    print("crop key pressed")
-    #if col_2.value == False:
-    #    print("q key pressed")
-    #row_1.value = True  # Disconnect drain from ground to stop scanning row
-
-    #row_2.value = False # Connect drain to ground to scan the row
-    #print(col_1.value)  # False if pressed (pulled to ground)
-    #if col_1.value == False:
-    #    print("weird key pressed")
-    #if col_2.value == False:
-    #    print("a key pressed")
-    #row_2.value = True  # Disconnect drain from ground to stop scanning row
 
     # TODO: Initialize display
     #import busio

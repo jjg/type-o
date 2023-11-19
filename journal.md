@@ -9,6 +9,11 @@ Wires are connected, now to do the software side of things...
 First row working!
 All rows working!
 
+OK, so now we have a complete (lower-case) keymap and we can read every key on the keyboard sucessfully.  There's a few places we can go from here:
+
+* Properly handle modifier keys (shift, control, etc.) & improve keymap
+* Implement async functions to read & display keyboard values correctly
+
 ## 11182023
 
 Tweaked the bottom case design to add clearance under the keyboard and elsewhere to accomodate the wiring between modules (the Dupont connectors add a lot of height).  This might be reducable in the future with more customized components.
