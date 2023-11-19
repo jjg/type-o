@@ -13,10 +13,21 @@ OK, so now we have a complete (lower-case) keymap and we can read every key on t
 
 * Properly handle modifier keys (shift, control, etc.) & improve keymap
 * Implement async functions to read & display keyboard values correctly
+* Forward keystrokes on to UID so the keyboard can work like a USB keyboard
+* Write the keystrokes to disk in a file that can be read on the attached computer.
 
-Both of these are a bit of work so for now I'm just going to tweak the display code a bit to see if I can get the keyboard to type "normally".  
+All of these are a bit of work so for now I'm just going to tweak the display code a bit to see if I can get the keyboard to type "normally".  
 
-Ok, now we can type a line of text and even hit return!
+Ok, now we can type a line of text and even hit return!  Here's the first lines of text written with the prototype:
+
+```
+ok, this is pretty o???? cool
+
+you coul ?d almost wrie ??te somethinig with this...
+```
+
+Obviously there are some important keys missing (like Backspace), but certainly enough to demonstrate that the electrical side of things is sound, and it's *almost* useable to write something!
+
 
 ## 11182023
 
