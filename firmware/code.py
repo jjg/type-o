@@ -57,7 +57,7 @@ keymap[2][7] = "m"
 keymap[2][8] = ","
 keymap[2][9] = "."
 keymap[2][10] = "/"
-keymap[2][11] = "E"
+keymap[2][11] = "\n"
 
 # row 4
 keymap[3][0] = "F"
@@ -66,7 +66,7 @@ keymap[3][2] = "U"
 keymap[3][3] = "A"
 keymap[3][4] = "L"
 keymap[3][5] = ""   # NC, space takes two columns
-keymap[3][6] = "P"
+keymap[3][6] = " "
 keymap[3][7] = "R"
 keymap[3][8] = "L"
 keymap[3][9] = "D"
@@ -114,6 +114,9 @@ for gpio in col_gpios:
     col.pull = Pull.UP
     kbd_cols.append(col)
 
+kbd_char = ""
+kbd_last_char = ""
+
 # main event loop
 while True: 
 
@@ -131,7 +134,10 @@ while True:
         keymap_y = 0
         keymap_x = keymap_x + 1
 
-    print(kbd_char)
+    # simple and lazy way to display pressed key
+    if kbd_char != kbd_last_char:
+        print(kbd_char, end="")
+        kbd_last_char = kbd_char
 
     # TODO: Initialize display
     #import busio
@@ -143,4 +149,4 @@ while True:
 
     #lcd.message = "Hell\n"
 
-    time.sleep(1)
+    time.sleep(0.01)

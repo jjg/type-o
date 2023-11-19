@@ -14,6 +14,10 @@ OK, so now we have a complete (lower-case) keymap and we can read every key on t
 * Properly handle modifier keys (shift, control, etc.) & improve keymap
 * Implement async functions to read & display keyboard values correctly
 
+Both of these are a bit of work so for now I'm just going to tweak the display code a bit to see if I can get the keyboard to type "normally".  
+
+Ok, now we can type a line of text and even hit return!
+
 ## 11182023
 
 Tweaked the bottom case design to add clearance under the keyboard and elsewhere to accomodate the wiring between modules (the Dupont connectors add a lot of height).  This might be reducable in the future with more customized components.
