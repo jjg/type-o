@@ -9,18 +9,42 @@ from digitalio import DigitalInOut, Direction, DriveMode, Pull
 # init keyboard
 
 # map keys to characters ([row][column])
-r = 4 
-c = 12
-keymap = [[0 for x in range(r)] for y in range(c)]
+#r = 4 
+#c = 12
+row_count = 4
+col_count = 12
+
+#keymap = [[0 for x in range(r)] for y in range(c)]
+keymap = [[0 for x in range(col_count)] for y in range(row_count)]
+
+# row 1
 keymap[0][0] = "c"
-keymap[1][0] = "?"
 keymap[0][1] = "q"
+keymap[0][2] = "w"
+keymap[0][3] = "e"
+keymap[0][4] = "r"
+keymap[0][5] = "t"
+keymap[0][6] = "y"
+keymap[0][7] = "u"
+keymap[0][8] = "i"
+keymap[0][9] = "o"
+keymap[0][10] = "p"
+keymap[0][11] = "Z"
+
+# row 2
+keymap[1][0] = "?"
 keymap[1][1] = "a"
+
+# row 3
+
+# row 4
 
 # row GPIOs
 row_gpios = [
         microcontroller.pin.GPIO18,
-        microcontroller.pin.GPIO25
+        microcontroller.pin.GPIO25,
+        microcontroller.pin.GPIO24,
+        microcontroller.pin.GPIO29
         ]
 
 # init rows
@@ -32,15 +56,22 @@ for gpio in row_gpios:
     row.value = False
     kbd_rows.append(row)
 
-# TODO: Add remaining rows
-#row_3 = DigitalInOut(microcontroller.pin.GPIO24)
-#row_4 = DigitalInOut(microcontroller.pin.GPIO29)
-
 # col GPIOs
 col_gpios = [
         microcontroller.pin.GPIO12,
-        microcontroller.pin.GPIO13
+        microcontroller.pin.GPIO13,
+        microcontroller.pin.GPIO11,
+        microcontroller.pin.GPIO10,
+        microcontroller.pin.GPIO9,
+        microcontroller.pin.GPIO8,
+        microcontroller.pin.GPIO7,
+        microcontroller.pin.GPIO6,
+        microcontroller.pin.GPIO0,
+        microcontroller.pin.GPIO1,
+        microcontroller.pin.GPIO20,
+        microcontroller.pin.GPIO19
         ]
+
 # init cols
 kbd_cols = []
 for gpio in col_gpios:

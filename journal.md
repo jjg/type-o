@@ -1,5 +1,12 @@
 # Type-O Project Journal
 
+## 11192023
+
+Going to try to wire-up the rest of the keyboard and see how much we an get working.
+
+Wires are connected, now to do the software side of things...
+
+
 ## 11182023
 
 Tweaked the bottom case design to add clearance under the keyboard and elsewhere to accomodate the wiring between modules (the Dupont connectors add a lot of height).  This might be reducable in the future with more customized components.
