@@ -1,5 +1,17 @@
 # Type-O Project Journal
 
+## 2023-11-20
+
+Switching to ISO-8601 dates.
+
+Spent some time today refactoring the code to use coroutines so I can scan the keyboard, update the display and run the debugger in a "multitasking" way.  So far it seems to be working and I think it's going to make it a lot easier to improve each individual component of the system.
+
+It does seem to break the REPL a bit because I don't seem to be able to feed it control signals via the serial console when the coroutines are running.  Maybe there's a trick to fixing that but for now I'm just operating under the assumption that if I need the REPL, I have to disable running the "OS" tasks.
+
+I've given the firmware the name `Type-OS`, it's probably overkill to refer to this as an operating system, but what the heck, right?
+
+I also started fleshing-out experimental support for storing text, but this won't get enabled until I can add another switch to enable/disable read-only mode (can't write to storage from CircuitPython when a computer can write to storage via USB).
+
 ## 11192023
 
 Going to try to wire-up the rest of the keyboard and see how much we an get working.

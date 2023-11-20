@@ -1,17 +1,26 @@
-# TODO: scan keyboard pins for input
-# TODO: write buffered input to LCD
-# TODO: write buffered input to file
 import time
 import board
 import microcontroller
 import asyncio
+import storage
 from digitalio import DigitalInOut, Direction, DriveMode, Pull
 
 class Keystrokes:
     def __init__(self):
         self.value = ""
+        self.display_char = ""
+        self.storage_char = ""
+        self.hid_char = ""
+        self.debug_char = ""
+    def insert(self, char):
+        self.value = char
+        self.display_char = char
+        self.storage_char = char
+        self.hid_char = char
+        self.debug_char = char
 
-async def scan_keyboard(keystrokes):
+async def keyboard(keystrokes):
+    print("-> keyboard started")
 
     # init keymap
     row_count = 4
@@ -121,9 +130,6 @@ async def scan_keyboard(keystrokes):
         col.pull = Pull.UP
         kbd_cols.append(col)
 
-    #kbd_char = ""
-    #kbd_last_char = ""
-
     # keyboard scan loop 
     while True: 
 
@@ -136,7 +142,8 @@ async def scan_keyboard(keystrokes):
             for kbd_col in kbd_cols:
                 if kbd_col.value == False:
                     #kbd_char = keymap[keymap_x][keymap_y]
-                    keystrokes.value = keymap[keymap_x][keymap_y]
+                    #keystrokes.value = keymap[keymap_x][keymap_y]
+                    keystrokes.insert(keymap[keymap_x][keymap_y])
                 keymap_y = keymap_y + 1
             kbd_row.value = True    # disconnect the row
             keymap_y = 0
@@ -145,27 +152,8 @@ async def scan_keyboard(keystrokes):
         # yeild control to the scheduler
         await asyncio.sleep(0)
 
-async def update_display(keystrokes):
-    print(keystrokes.value, end="")
-    keystrokes.value = ""
-
-    # simple and lazy way to display pressed key
-    #if kbd_char != kbd_last_char:
-    #    print(kbd_char, end="")
-    #    kbd_last_char = kbd_char
-
-    await asyncio.sleep(0)
-
-# main event loop
-async def main():
-    keystrokes = Keystrokes()
-
-    scan_keyboard_task = asyncio.create_task(scan_keyboard(keystrokes))
-    update_display_task = asyncio.create_task(update_display(keystrokes))
-
-    await asyncio.gather(scan_keyboard_task, update_display_task)
-
-asyncio.run(main())
+async def display(keystrokes):
+    print("-> display started")
 
     # TODO: Initialize display
     #import busio
@@ -175,6 +163,70 @@ asyncio.run(main())
     #rows = 4 
     #lcd = character_lcd.Character_LCD_I2C(i2c, cols, rows)
 
-    #lcd.message = "Hell\n"
+    while True:
+        # TODO: Actually write the character to the LCD one-at-a-time
+        #lcd.message = "Hell\n"
+        keystrokes.display_char = ""
+        await asyncio.sleep(0)
 
-    #time.sleep(0.01)
+async def storage(keystrokes):
+    print("-> storage started")
+    try:
+        with open("/journal.md", "a") as fp:
+            while True:
+                fp.write(keystrokes.storage_char)
+                fp.flush()
+                await asyncio.sleep(0)
+    except OSError as e:
+        print("-X {}".format(e))
+        print("-> storage stopped")
+
+async def hid(keystrokes):
+    print("-> hid started")
+    
+    while True:
+        # TODO: write char to HID device
+        keystrokes.hid_char = ""
+        await asyncio.sleep(0)
+
+async def debugger(keystrokes):
+    print("-> debugger started")
+    print("\nWelcome to the Type-OS Debugger")
+    print("CPU Temp: {}".format(microcontroller.cpu.temperature))
+    print("CPU Frequency: {}".format(microcontroller.cpu.frequency))
+
+    print("\n--- input from keyboard ---")
+    while True:
+        print(keystrokes.debug_char, end="")
+        keystrokes.debug_char = ""
+
+        await asyncio.sleep(0)
+
+
+# main event loop
+async def main():
+
+    print("\nBooting Type-OS v0.0.0a")
+
+    print("-> init keystrokes object")
+    keystrokes = Keystrokes()
+
+    print("-> init keyboard") 
+    keyboard_task = asyncio.create_task(keyboard(keystrokes))
+
+    print("-> init display")
+    display_task = asyncio.create_task(display(keystrokes))
+
+    print("-> init storage")
+    storage_task = asyncio.create_task(storage(keystrokes))
+
+    print("-> init hid")
+    hid_task = asyncio.create_task(hid(keystrokes))
+
+    print("-> init debugger")
+    debugger_task = asyncio.create_task(debugger(keystrokes))
+
+    print("Starting tasks")
+    await asyncio.gather(keyboard_task, display_task, storage_task, hid_task, debugger_task)
+
+asyncio.run(main())
