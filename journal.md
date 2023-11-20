@@ -28,6 +28,13 @@ you coul ?d almost wrie ??te somethinig with this...
 
 Obviously there are some important keys missing (like Backspace), but certainly enough to demonstrate that the electrical side of things is sound, and it's *almost* useable to write something!
 
+So after thinking about it for awhile I think the right thing to do next is to implement concurrency so we can separate scanning the keyboard from writing to the display and storing data.  Since everything else will be built on this, it's probably a good time to start doing things this way.
+
+This will be a pretty big refactor so the code might be a mess for awhile.
+
+
+
+
 
 ## 11182023
 
