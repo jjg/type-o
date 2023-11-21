@@ -51,7 +51,8 @@ async def get_keyboard(keystrokes):
         kbd_cols.append(col)
 
     # keyboard scan loop
-    debounce_timeout = 5    # milliseconds
+    debounce_timeout = 50    # milliseconds
+    debounce_countdown = debounce_timeout
     this_char = ""
     last_char = this_char
     while True: 
@@ -65,6 +66,8 @@ async def get_keyboard(keystrokes):
                 if kbd_col.value == False:
                     this_char = keymap[keymap_x][keymap_y]
 
+                    # TODO: If a modifier key (shift, raise, etc. is being pressed,
+                    # use the appropriate alternate character map.
                     # debounce by ignoring repeated characters for 0.5 seconds
                     # NOTE: this is only accurate while asyncio.sleep() is set to 0.01!!!
                     if this_char == last_char:
@@ -82,4 +85,4 @@ async def get_keyboard(keystrokes):
             keymap_x = keymap_x + 1
 
         # yield control to the scheduler
-        await asyncio.sleep(0.1)
+        await asyncio.sleep(0.01)

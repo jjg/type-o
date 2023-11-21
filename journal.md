@@ -26,6 +26,8 @@ That had a bug where the same key deliberately pressed twice (as in "pressed") w
 
 I may have to revisit all of this when I implement modifier keys but we'll cross that bridge when we get to it.
 
+Hmm... this still doesn't work right.  I'll have to think about it some more and come-up with some alternatives.
+
 ## 2023-11-20
 
 Switching to ISO-8601 dates.
