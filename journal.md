@@ -8,6 +8,23 @@ At this point I might try breaking-down the single `code.py` file into something
 
 Maybe I'll start with just the keymap.
 
+That went smoother than expected!
+
+For now I just moved all the task functions as well as the keymap generator into separate files.  At some point I might refine this a bit and change the access patterns (maybe turn it into a package, etc.) but this is a good start for now.
+
+While I'm still blocked by parts for the display, it's tempting to work on one of the other output devices (`journal` or `hidkeyboard`) but I really should sort-out the debouncing of the keyboard first.  This is a harder one to work on however because I need physical access to they keyboard to test it (as opposed to other things that I can easily work on via remote session).
+
+So if we want this to work like a regula keyboard, when a key is pressed it should stick the associated character into the `Keystrokes` object once, unless it's held-down for some predetermined amount of time.  I can think of a couple of ways to accomplish this by hand, but there's also the [keypad](https://docs.circuitpython.org/en/latest/shared-bindings/keypad/index.html#module-keypad) module...
+
+After looking into that module a bit I'm not sure I want to rely that heavily on it.  It has support for matrix keyboards out-of-the-box, which is cool, but I think I'm going to want more control over things like key repeating and modifier keys and since I have my own implementation that works I don't really want to paint myself into a corner with something that might just have to be replaced later.
+
+So let's do it the hard way for now.  What's the *simplest thing that could possibly work*?
+
+Keep track of the last character registered and if it's the same as the one currently registered, do nothing.
+
+That had a bug where the same key deliberately pressed twice (as in "pressed") wouldn't register, so I added a `debounce_timeout` as well which essentially counts-down from a preset debouncing limit to zero if the last and current keypress characters match.  This way a second press will register once the timeout has expired.  This also should get us a limited form or autorepeat, although it will be kind of slow.
+
+I may have to revisit all of this when I implement modifier keys but we'll cross that bridge when we get to it.
 
 ## 2023-11-20
 

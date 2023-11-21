@@ -50,20 +50,31 @@ async def get_keyboard(keystrokes):
         col.pull = Pull.UP
         kbd_cols.append(col)
 
-    # keyboard scan loop 
+    # keyboard scan loop
+    debounce_timeout = 5    # milliseconds
+    this_char = ""
+    last_char = this_char
     while True: 
 
         # read keypress from keyboard
-        kbd_char = ""
         keymap_x = 0
         keymap_y = 0
         for kbd_row in kbd_rows:
             kbd_row.value = False   # connect the row
             for kbd_col in kbd_cols:
                 if kbd_col.value == False:
+                    this_char = keymap[keymap_x][keymap_y]
 
-                    # TODO: control bouncing/repeating of characters during keypress
-                    keystrokes.insert(keymap[keymap_x][keymap_y])
+                    # debounce by ignoring repeated characters for 0.5 seconds
+                    # NOTE: this is only accurate while asyncio.sleep() is set to 0.01!!!
+                    if this_char == last_char:
+                        debounce_countdown = debounce_countdown -1
+                        if debounce_countdown == 0:
+                            debounce_countdown = debounce_timeout
+                            last_char = ""
+                    else:
+                        keystrokes.insert(this_char)
+                        last_char = this_char
 
                 keymap_y = keymap_y + 1
             kbd_row.value = True    # disconnect the row
