@@ -1,5 +1,14 @@
 # Type-O Project Journal
 
+## 2023-11-21
+
+I learned a lot of things during the asyncio refactor.  The one that stands-out the most is that I need an effective way of debouncing (or at least controlling the bouncing) of keypresses.  I experimented with adding some wait time to the keyboard scanning loop (`asyncio.sleep(0.1)`).  This is an improvement, but it doesn't really produce the desired effect.
+
+At this point I might try breaking-down the single `code.py` file into something more modular.  This might be premature, but now that each major piece of hardware is split into it's own task function the boundaries are getting more clear.
+
+Maybe I'll start with just the keymap.
+
+
 ## 2023-11-20
 
 Switching to ISO-8601 dates.

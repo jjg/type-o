@@ -141,16 +141,17 @@ async def keyboard(keystrokes):
             kbd_row.value = False   # connect the row
             for kbd_col in kbd_cols:
                 if kbd_col.value == False:
-                    #kbd_char = keymap[keymap_x][keymap_y]
-                    #keystrokes.value = keymap[keymap_x][keymap_y]
+
+                    # TODO: control bouncing/repeating of characters during keypress
                     keystrokes.insert(keymap[keymap_x][keymap_y])
+
                 keymap_y = keymap_y + 1
             kbd_row.value = True    # disconnect the row
             keymap_y = 0
             keymap_x = keymap_x + 1
 
-        # yeild control to the scheduler
-        await asyncio.sleep(0)
+        # yield control to the scheduler
+        await asyncio.sleep(0.1)
 
 async def display(keystrokes):
     print("-> display started")
