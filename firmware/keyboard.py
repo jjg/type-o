@@ -69,4 +69,4 @@ async def get_keyboard(keystrokes):
             keymap_x = keymap_x + 1
 
         # wait 20ms between scans (yield control to the scheduler)
-        await asyncio.sleep_ms(20)
+        await asyncio.sleep_ms(120)

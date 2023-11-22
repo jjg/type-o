@@ -1,5 +1,11 @@
 # Type-O Project Journal
 
+## 2023-11-22
+
+New [i2c LCD showed-up](https://www.waveshare.com/wiki/LCD1602_I2C_Module), let's see if we can get that to work.
+
+
+
 ## 2023-11-21
 
 I learned a lot of things during the asyncio refactor.  The one that stands-out the most is that I need an effective way of debouncing (or at least controlling the bouncing) of keypresses.  I experimented with adding some wait time to the keyboard scanning loop (`asyncio.sleep(0.1)`).  This is an improvement, but it doesn't really produce the desired effect.
@@ -27,6 +33,9 @@ That had a bug where the same key deliberately pressed twice (as in "pressed") w
 I may have to revisit all of this when I implement modifier keys but we'll cross that bridge when we get to it.
 
 Hmm... this still doesn't work right.  I'll have to think about it some more and come-up with some alternatives.
+
+
+Unrelated, an LCD to test with: https://www.waveshare.com/wiki/LCD1602_I2C_Module
 
 ## 2023-11-20
 
